@@ -65,6 +65,7 @@
             <artifactId>maven-resources-plugin</artifactId>
             <version>3.3.1</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -81,6 +82,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
