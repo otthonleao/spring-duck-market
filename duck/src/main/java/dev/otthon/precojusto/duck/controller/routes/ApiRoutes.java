@@ -8,5 +8,6 @@ public class ApiRoutes {
 
     public static final String DUCKS = "/ducks";
     public static final String CUSTOMERS = "/customers";
+    public static final String SELLERS = "/sellers";
 
 }
