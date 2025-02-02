@@ -33,7 +33,6 @@ public class Duck implements Serializable {
     @Column(name = "STATUS")
     private SaleStatusEnum status;
 
-    @ManyToOne
     @JoinColumn(name = "MOTHER_ID")
-    private Duck motherId;
+    private Long motherId;
 }
