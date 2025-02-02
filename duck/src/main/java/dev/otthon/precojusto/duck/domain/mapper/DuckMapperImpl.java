@@ -18,7 +18,7 @@ public class DuckMapperImpl implements DuckMapper{
                 .status(SaleStatusEnum.AVAILABLE);
 
         if (request.getMotherId() != null) {
-            Duck motherIdRequest = Duck.builder().id(request.getMotherId()).build();
+            Long motherIdRequest = request.getMotherId();
             duckBuilder.motherId(motherIdRequest);
         }
         return duckBuilder.build();
@@ -32,7 +32,7 @@ public class DuckMapperImpl implements DuckMapper{
                 .id(entity.getId())
                 .name(entity.getName())
                 .status(entity.getStatus())
-                .motherId(entity.getMotherId() != null ? entity.getMotherId().getId() : null)
+                .motherId(entity.getMotherId() != null ? entity.getMotherId() : null)
                 .build();
     }
 }
