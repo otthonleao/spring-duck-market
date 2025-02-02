@@ -1,6 +1,8 @@
 package dev.otthon.precojusto.duck.domain.service;
 
+import dev.otthon.precojusto.duck.domain.entity.Customer;
 import dev.otthon.precojusto.duck.domain.entity.Duck;
+import dev.otthon.precojusto.duck.domain.entity.Sale;
 import dev.otthon.precojusto.duck.domain.enums.SaleStatusEnum;
 import dev.otthon.precojusto.duck.domain.mapper.SaleMapper;
 import dev.otthon.precojusto.duck.dto.request.SaleRequest;
@@ -13,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,6 +40,7 @@ public class SaleServiceImpl implements SaleService {
         checkIfDuckIsSold(request.getDucks());
 
         List<Duck> ducks = duckRepository.findAllById(request.getDucks());
+        Customer customer = customerRepository.findById(request.getCustomerId()).get();
 
         ducks.forEach(duck -> duck.setStatus(SaleStatusEnum.SOLD));
         duckRepository.saveAll(ducks);
@@ -44,7 +48,33 @@ public class SaleServiceImpl implements SaleService {
         var toEntity = saleMapper.fromDTOToEntity(request);
         var savedDatabase = saleRepository.save(toEntity);
 
-        return saleMapper.fromEntityToDTO(savedDatabase);
+        BigDecimal totalValue = calculateTotalValue(ducks);
+        SaleResponse response = saleMapper.fromEntityToDTO(savedDatabase);
+        response.setTotalValue(customer.isHasDiscount() ? totalValue.multiply(BigDecimal.valueOf(0.8)) : totalValue);
+
+        return response;
+    }
+
+    private BigDecimal calculateTotalValue(List<Duck> ducks) {
+
+        BigDecimal totalValue = BigDecimal.ZERO;
+
+        for (Duck duck : ducks) {
+            Long countDucklings = duckRepository.countByMotherId(duck.getMotherId());
+            if (countDucklings >= 2) {
+                totalValue = totalValue.add(BigDecimal.valueOf(25));
+            }
+
+            if (countDucklings == 1) {
+                totalValue = totalValue.add(BigDecimal.valueOf(50));
+            }
+
+            if (countDucklings == 0) {
+                totalValue = totalValue.add(BigDecimal.valueOf(70));
+            }
+        }
+
+        return totalValue;
     }
 
     private void checkIfSellerExists(Long sellerId) {

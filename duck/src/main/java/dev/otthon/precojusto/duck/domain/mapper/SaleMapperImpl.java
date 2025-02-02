@@ -37,6 +37,7 @@ public class SaleMapperImpl implements SaleMapper {
         return Sale.builder()
             .customer(customer)
             .seller(seller)
+            .ducks(ducks)
             .build();
     }
 
@@ -49,7 +50,6 @@ public class SaleMapperImpl implements SaleMapper {
                 .seller(entity.getSeller().getId())
                 .ducks(entity.getDucks())
                 .totalValue(entity.getTotalValue())
-                .discountApplied(entity.getDiscountApplied())
                 .saleDate(entity.getSaleDate())
                 .build();
     }

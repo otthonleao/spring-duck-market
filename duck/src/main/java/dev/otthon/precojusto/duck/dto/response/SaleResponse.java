@@ -24,7 +24,6 @@ public class SaleResponse {
     private Long seller;
     private List<Duck> ducks;
     private BigDecimal totalValue;
-    private BigDecimal discountApplied;
     private LocalDateTime saleDate;
 
 }
