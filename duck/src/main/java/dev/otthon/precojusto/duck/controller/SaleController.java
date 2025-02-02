@@ -1,9 +1,9 @@
 package dev.otthon.precojusto.duck.controller;
 
 import dev.otthon.precojusto.duck.controller.routes.ApiRoutes;
-import dev.otthon.precojusto.duck.domain.service.CustomerService;
-import dev.otthon.precojusto.duck.dto.request.CreateCustomerRequest;
-import dev.otthon.precojusto.duck.dto.response.CustomerResponse;
+import dev.otthon.precojusto.duck.domain.service.SaleService;
+import dev.otthon.precojusto.duck.dto.request.SaleRequest;
+import dev.otthon.precojusto.duck.dto.response.SaleResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,21 +16,22 @@ import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(ApiRoutes.CUSTOMERS)
-public class CustomerController {
+@RequestMapping(ApiRoutes.SALES)
+public class SaleController {
 
-    private final CustomerService Service;
+    private final SaleService saleService;
 
     @PostMapping
-    public ResponseEntity<CustomerResponse> create(@RequestBody final CreateCustomerRequest request) {
-        CustomerResponse created = Service.create(request);
+    public ResponseEntity<SaleResponse> order(@RequestBody final SaleRequest request) {
+
+        SaleResponse created = saleService.orderBuy(request);
+
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(created.getId())
                 .toUri();
         return ResponseEntity.created(uri).body(created);
+
     }
-
-
 }

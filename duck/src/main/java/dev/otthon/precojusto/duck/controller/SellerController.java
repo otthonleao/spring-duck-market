@@ -1,7 +1,7 @@
 package dev.otthon.precojusto.duck.controller;
 
 import dev.otthon.precojusto.duck.controller.routes.ApiRoutes;
-import dev.otthon.precojusto.duck.domain.entity.Seller;
+
 import dev.otthon.precojusto.duck.domain.service.SellerService;
 import dev.otthon.precojusto.duck.dto.request.CreateSellerRequest;
 import dev.otthon.precojusto.duck.dto.response.SellerResponse;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
