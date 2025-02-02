@@ -1,6 +1,7 @@
 package dev.otthon.precojusto.duck.controller;
 
 import dev.otthon.precojusto.duck.controller.routes.ApiRoutes;
+
 import dev.otthon.precojusto.duck.domain.service.SellerService;
 import dev.otthon.precojusto.duck.dto.request.CreateSellerRequest;
 import dev.otthon.precojusto.duck.dto.response.SellerResponse;
