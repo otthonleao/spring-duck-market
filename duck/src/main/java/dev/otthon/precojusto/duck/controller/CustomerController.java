@@ -1,6 +1,5 @@
 package dev.otthon.precojusto.duck.controller;
 
-
 import dev.otthon.precojusto.duck.controller.routes.ApiRoutes;
 import dev.otthon.precojusto.duck.domain.service.CustomerService;
 import dev.otthon.precojusto.duck.dto.request.CreateCustomerRequest;
