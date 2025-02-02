@@ -29,11 +29,17 @@ INSERT INTO tb_duck (id, name, status, mother_id) VALUES (28, 'Duck28', 'AVAILAB
 INSERT INTO tb_duck (id, name, status, mother_id) VALUES (29, 'Duck29', 'AVAILABLE', 19);
 INSERT INTO tb_duck (id, name, status, mother_id) VALUES (30, 'Duck30', 'AVAILABLE', 20);
 
+ALTER TABLE tb_duck ALTER COLUMN id RESTART WITH 31;
+
 INSERT INTO tb_customer (name, has_discount) VALUES ('Cristiano Ronaldo', false);
 INSERT INTO tb_customer (name, has_discount) VALUES ('Neymar Jr.', false);
 INSERT INTO tb_customer (name, has_discount) VALUES ('Rodrigo Garro', true);
 INSERT INTO tb_customer (name, has_discount) VALUES ('Memphis Depay', true);
 
+ALTER TABLE tb_customer ALTER COLUMN id RESTART WITH 5;
+
 INSERT INTO tb_seller (name, cpf, registration) VALUES ('Otthon Leão', '12345678901', 'A1234567');
 INSERT INTO tb_seller (name, cpf, registration) VALUES ('Yuri Alberto', '12345678902', 'A1234568');
 INSERT INTO tb_seller (name, cpf, registration) VALUES ('Ronaldo Fenômeno', '12345678903', 'A1234569');
+
+ALTER TABLE tb_seller ALTER COLUMN id RESTART WITH 4;
